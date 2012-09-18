@@ -1,0 +1,106 @@
+
+% This LaTeX was auto-generated from an M-file by MATLAB.
+% To make changes, update the M-file and republish this document.
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{color}
+
+\sloppy
+\definecolor{lightgray}{gray}{0.5}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+    
+    
+\section*{GEORGE MICROS}
+
+
+
+\subsection*{ECE 313 ELECTRONICS}
+
+
+
+\subsection*{CONTRACTION FUNCTION FOR VOLTAGE ACROSS DIODE}
+
+\begin{verbatim}
+clear; clc
+
+% CIRCUIT CONDITIONS
+Vdd = 5; %V
+R = 1000; %Ohms
+Vt = .0259; %V
+
+%INITIAL CONDITIONS
+I = .001; %A
+Vdiode = .7; %V
+
+Is = I*exp(-Vdiode/Vt);
+Vdiode = zeros(10);
+
+%INITAL GUESS VECTOR
+guess = [10 -5 .2];
+
+%ITERATION THROUGH GUESS VECTOR
+for j = 1:length(guess)
+    Vdiode(1) = guess(j);
+    Idiode(1) = (Vdd - Vdiode(1))/R;
+    fprintf('\n\nInitial guess : Vdiode = %f V, ', Vdiode(1));
+    fprintf('    Idiode = %f A\n\n', Idiode(1));
+    for i = 2:10
+       %ITERATION USING CONTRACTION FUNCTION
+       Vdiode(i) = Vt * abs(log((Vdd-Vdiode(i-1))/(Is*R)));
+       fprintf('UPDATED: Vdiode = %f V', Vdiode(i))
+       Idiode(i) = (Vdd - Vdiode(i))/R;
+       fprintf('Initial guess : Idiode = %f A\n', Idiode(i));
+
+    end
+end
+\end{verbatim}
+
+        \color{lightgray} \begin{verbatim}
+
+Initial guess : Vdiode = 10.000000 V,     Idiode = -0.005000 A
+
+UPDATED: Vdiode = 0.746134 VInitial guess : Idiode = 0.004254 A
+UPDATED: Vdiode = 0.737499 VInitial guess : Idiode = 0.004263 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+
+
+Initial guess : Vdiode = -5.000000 V,     Idiode = 0.010000 A
+
+UPDATED: Vdiode = 0.759637 VInitial guess : Idiode = 0.004240 A
+UPDATED: Vdiode = 0.737416 VInitial guess : Idiode = 0.004263 A
+UPDATED: Vdiode = 0.737552 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+
+
+Initial guess : Vdiode = 0.200000 V,     Idiode = 0.004800 A
+
+UPDATED: Vdiode = 0.740627 VInitial guess : Idiode = 0.004259 A
+UPDATED: Vdiode = 0.737532 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+UPDATED: Vdiode = 0.737551 VInitial guess : Idiode = 0.004262 A
+\end{verbatim} \color{black}
+    
+
+
+\end{document}
+    
